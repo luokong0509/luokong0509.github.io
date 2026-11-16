@@ -1,6 +1,27 @@
 (function () {
   "use strict";
 
+  /* ---------- 兼容旧版 hash 链接（/#/post/<slug>、/#/category/<id>） ---------- */
+  (function () {
+    var CAT_ID = {
+      bus: "车载总线",
+      diag: "诊断与测试",
+      autosar: "AUTOSAR",
+      safety: "功能安全",
+      eth: "车载以太网",
+      tools: "工具与脚本"
+    };
+    var h = window.location.hash;
+    if (!h) return;
+    var m = /^#\/post\/([^/?#]+)/.exec(h);
+    if (m) { window.location.replace("/posts/" + m[1] + "/"); return; }
+    m = /^#\/categor(?:y|ies)(?:\/([^/?#]+))?/.exec(h);
+    if (m) {
+      var id = m[1];
+      window.location.replace(id && CAT_ID[id] ? "/categories/" + encodeURIComponent(CAT_ID[id]) + "/" : "/categories/");
+    }
+  })();
+
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- 时钟 ---------- */
