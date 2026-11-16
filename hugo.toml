@@ -11,7 +11,7 @@ timeZone = "Asia/Shanghai"
 
 [params]
   brand = "BUSLOG"
-  tagline = "车载网络与 ECU 的现场记录"
+  tagline = "落空"
   description = "记录车载网络的协议细节、诊断测试、AUTOSAR 与功能安全的实践笔记。"
   author = "luokong0509"
 
