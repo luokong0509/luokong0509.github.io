@@ -97,7 +97,7 @@ main{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 1
 }
 .hero h1 em{font-style:normal;color:var(--cyan)}
 .lede{margin:18px 0 0;max-width:34em;color:var(--ink2);font-size:15px;line-height:1.85}
-.stats{display:flex;gap:0;margin-top:52px;flex-wrap:wrap;border-top:1px solid var(--line)}
+.stats{display:flex;gap:0;margin-top:80px;flex-wrap:wrap;border-top:1px solid var(--line)}
 .stat{padding:14px 22px 0 0;margin-right:22px;flex:0 0 auto}
 .stat b{display:block;font-family:var(--mono);font-size:20px;color:var(--ink);font-variant-numeric:tabular-nums;line-height:1.2}
 .stat span{font-size:11.5px;color:var(--ink3);letter-spacing:.06em}
