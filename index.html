@@ -129,7 +129,7 @@ main{position:relative;z-index:1;max-width:var(--maxw);margin:0 auto;padding:0 1
 }
 .mon-head small{color:var(--ink3);letter-spacing:.02em}
 .mon-body{overflow-x:auto}
-.frames{list-style:none;margin:0;padding:0;min-width:342px}
+.frames{list-style:none;margin:0;padding:0;min-width:316px}
 .frame{
   display:grid;grid-template-columns:88px 26px 1fr;align-items:center;gap:10px;
   padding:7px 12px;border-bottom:1px solid rgba(28,42,48,.7);
@@ -325,15 +325,18 @@ footer{
   .rail-in{padding:0 26px;height:62px}
   main{padding:0 26px 96px}
   .hero{padding:66px 0 44px}
-  .hero-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:40px;align-items:start}
   .clock{display:flex}
-  .toolbar{grid-template-columns:1fr 290px;align-items:center;padding-top:32px}
   .cat-grid{grid-template-columns:repeat(2,1fr);gap:16px}
   .prose{font-size:16px}
-  .list-head{
-    display:grid;grid-template-columns:106px 148px 1fr 78px;gap:16px;
-  }
-  .row-in{grid-template-columns:106px 148px minmax(0,1fr) 78px;gap:16px;align-items:start}
+  .search{max-width:420px}
+  .row-sum{max-width:42em}
+}
+@media (min-width:1000px){
+  .hero-grid{grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);gap:44px;align-items:start}
+  .toolbar{grid-template-columns:1fr 288px;align-items:center;padding-top:32px}
+  .search{max-width:none}
+  .list-head{display:grid;grid-template-columns:96px 132px 1fr 66px;gap:18px;padding:10px 0}
+  .row-in{grid-template-columns:96px 132px minmax(0,1fr) 66px;gap:18px;align-items:start}
   .row-meta{flex-direction:column;gap:4px}
   .row-title{grid-column:3;grid-row:1}
   .row-sum{grid-column:3;grid-row:2}
