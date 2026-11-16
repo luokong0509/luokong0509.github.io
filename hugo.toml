@@ -1,0 +1,29 @@
+baseURL = "https://luokong0509.github.io/"
+locale = "zh-cn"
+defaultContentLanguage = "zh-cn"
+title = "汽车电子笔记"
+enableRobotsTXT = true
+hasCJKLanguage = true
+timeZone = "Asia/Shanghai"
+
+[taxonomies]
+  category = "categories"
+
+[params]
+  brand = "BUSLOG"
+  tagline = "车载网络与 ECU 的现场记录"
+  description = "记录车载网络的协议细节、诊断测试、AUTOSAR 与功能安全的实践笔记。"
+  author = "luokong0509"
+
+[markup]
+  [markup.goldmark.renderer]
+    unsafe = true
+  [markup.goldmark.extensions.typographer]
+    disable = true
+  [markup.highlight]
+    noClasses = true
+    style = "dracula"
+    lineNos = false
+
+[outputs]
+  home = ["HTML", "RSS"]

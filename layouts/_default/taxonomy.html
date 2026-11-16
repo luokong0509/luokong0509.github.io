@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ $name := .Title }}
+{{ $color := "#5d737b" }}{{ $code := "—" }}{{ $desc := "" }}
+{{ range hugo.Data.categories.items }}{{ if eq .name $name }}{{ $color = .color }}{{ $code = .code }}{{ $desc = .desc }}{{ end }}{{ end }}
+<section class="page-head">
+  <div class="eyebrow">{{ $code }} / 分类</div>
+  <h2><i class="swatch" style="background:{{ $color }}"></i>{{ $name }}</h2>
+  <p>{{ with $desc }}{{ . }}{{ else }}这个分类下的全部笔记。{{ end }}</p>
+</section>
+
+<div class="list" id="post-list">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "row.html" . }}{{ end }}
+</div>
+
+<p class="back-link"><a class="btn" href="{{ "/categories/" | relURL }}">返回分类总览</a></p>
+{{ end }}

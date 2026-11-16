@@ -1,0 +1,48 @@
+{{ define "main" }}
+{{ $posts := site.RegularPages.ByDate.Reverse }}
+{{ $cats := hugo.Data.categories.items }}
+
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="eyebrow">CAN · LIN · UDS · AUTOSAR · ISO 26262</div>
+      <h1>把一个字节<em>解成</em>车速</h1>
+      <p class="lede">这里记的是车载网络里能落到实车和台架上的细节：CAN 信号怎么拼、UDS 为什么会回 0x33、AUTOSAR 那几层谁调谁、ASIL 是怎么被算出来的。不写综述，只写踩过的坑。</p>
+      <div class="stats">
+        <div class="stat"><b>{{ len $posts }}</b><span>篇文章</span></div>
+        <div class="stat"><b>{{ len $cats }}</b><span>个分类</span></div>
+        <div class="stat"><b>{{ if $posts }}{{ (index $posts 0).Date.Format "2006.01.02" }}{{ else }}—{{ end }}</b><span>最近更新</span></div>
+      </div>
+    </div>
+    {{ partial "monitor.html" . }}
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="chips" role="group" aria-label="按分类筛选">
+    <button type="button" class="chip" data-cat="all" aria-pressed="true">全部<span class="n">{{ len $posts }}</span></button>
+    {{ range $cats }}
+    {{ $p := where $posts "Params.categories" "intersect" (slice .name) }}
+    <button type="button" class="chip" data-cat="{{ .name }}" aria-pressed="false"><i style="color:{{ .color }}"></i>{{ .name }}<span class="n">{{ len $p }}</span></button>
+    {{ end }}
+  </div>
+  <label class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="#5d737b" stroke-width="1.6"/><path d="M16 16l4.5 4.5" stroke="#5d737b" stroke-width="1.6"/></svg>
+    <input id="q" type="search" placeholder="搜索标题、摘要或分类" autocomplete="off" aria-label="搜索文章">
+  </label>
+</div>
+
+<div class="list-head" aria-hidden="true">
+  <span>日期</span><span>分类</span><span>标题</span><span>阅读</span>
+</div>
+
+<div class="list" id="post-list">
+  {{ range $posts }}{{ partial "row.html" . }}{{ end }}
+</div>
+
+<div class="empty" id="empty" hidden>
+  <h3>没有匹配的文章</h3>
+  <p>换个关键词，或者清掉当前的分类筛选。</p>
+  <div class="act"><button type="button" class="btn" id="resetFilter">清空筛选</button></div>
+</div>
+{{ end }}

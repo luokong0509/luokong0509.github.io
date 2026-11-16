@@ -1,0 +1,44 @@
+# 分类定义。name 要和各篇文章 front matter 里的 categories 完全一致。
+# 新增分类：在这里追加一段，然后在文章里写 categories = ["分类名"]。
+
+[[items]]
+id = "bus"
+name = "车载总线"
+code = "BUS"
+color = "#31d3c2"
+desc = "CAN / CAN FD / LIN 的帧结构、信号定义与故障排查。"
+
+[[items]]
+id = "diag"
+name = "诊断与测试"
+code = "DIAG"
+color = "#e8a63e"
+desc = "UDS、DoIP、DID 与刷写流程在台架和实车上的落地。"
+
+[[items]]
+id = "autosar"
+name = "AUTOSAR"
+code = "BSW"
+color = "#6f9cd4"
+desc = "CP / AP 分层、RTE 与 BSW 配置里容易踩的坑。"
+
+[[items]]
+id = "safety"
+name = "功能安全"
+code = "FUSA"
+color = "#d95a41"
+desc = "ISO 26262 的 HARA、ASIL 判定与安全机制实现。"
+
+[[items]]
+id = "eth"
+name = "车载以太网"
+code = "ETH"
+color = "#93a86a"
+desc = "100BASE-T1、SOME/IP 与域控架构的链路问题。"
+
+[[items]]
+id = "tools"
+name = "工具与脚本"
+code = "TOOL"
+color = "#a08cc0"
+desc = "CANoe、python-can、WSL 与自建工具的工作流。"

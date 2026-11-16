@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{ $name := "未分类" }}{{ with .Params.categories }}{{ $name = index . 0 }}{{ end }}
+{{ $color := "#5d737b" }}{{ $code := "—" }}
+{{ range hugo.Data.categories.items }}{{ if eq .name $name }}{{ $color = .color }}{{ $code = .code }}{{ end }}{{ end }}
+<article class="post-wrap">
+  <div class="crumb">
+    <a href="{{ "/" | relURL }}">首页</a><span class="sep">/</span>
+    {{ with site.GetPage (printf "/categories/%s" $name) }}<a href="{{ .RelPermalink }}">{{ $name }}</a>{{ else }}<span>{{ $name }}</span>{{ end }}
+  </div>
+  <header class="post-head">
+    <div class="post-cat"><i class="swatch" style="background:{{ $color }}"></i>{{ $name }} · {{ $code }}</div>
+    <h1>{{ .Title }}</h1>
+    <div class="post-meta">
+      <div><span>发布</span><b>{{ .Date.Format "2006.01.02" }}</b></div>
+      <div><span>阅读</span><b>约 {{ with .Params.minutes }}{{ . }}{{ else }}{{ .ReadingTime }}{{ end }} 分钟</b></div>
+      <div><span>字数</span><b>{{ countrunes (plainify .Content) }}</b></div>
+    </div>
+  </header>
+  <div class="prose" id="article">{{ .Content }}</div>
+  <div class="post-foot">
+    <span class="tagline">{{ site.Params.brand }} · {{ site.Title }}</span>
+    <a class="btn" href="{{ "/" | relURL }}">返回文章列表</a>
+  </div>
+</article>
+{{ end }}

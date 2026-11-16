@@ -1,0 +1,39 @@
+{{ define "main" }}
+{{ $cats := hugo.Data.categories.items }}
+<section class="page-head">
+  <div class="eyebrow">INDEX / 分类总览</div>
+  <h2>按主题找文章</h2>
+  <p>{{ len site.RegularPages }} 篇文章分布在 {{ len $cats }} 个分类里。分类不是目录，是排查问题时最常用的那条入口。</p>
+</section>
+
+<div class="cat-grid">
+{{ range $cats }}
+  {{ $name := .name }}
+  {{ $pages := where site.RegularPages.ByDate.Reverse "Params.categories" "intersect" (slice $name) }}
+  <div class="cat-card">
+    <div class="cat-card-top">
+      <span class="code" style="color:{{ .color }}">{{ .code }}</span>
+      <span class="count">{{ len $pages }} 篇</span>
+    </div>
+    <h3><i class="swatch" style="background:{{ .color }};margin-right:9px;vertical-align:2px"></i>{{ .name }}</h3>
+    <p>{{ .desc }}</p>
+    {{ if $pages }}
+    <ul class="posts">
+      {{ range $pages }}
+      <li><a href="{{ .RelPermalink }}"><i>{{ .Date.Format "01-02" }}</i><span>{{ .Title }}</span></a></li>
+      {{ end }}
+    </ul>
+    {{ else }}
+    <div class="none">该分类的笔记还在整理。</div>
+    {{ end }}
+    {{ with site.GetPage (printf "/categories/%s" $name) }}
+    <a class="go" href="{{ .RelPermalink }}">查看该分类 →</a>
+    {{ end }}
+  </div>
+{{ end }}
+</div>
+
+{{ with site.GetPage "/categories" }}
+<p class="back-link"><a class="btn" href="{{ .RelPermalink }}">全部标签页</a></p>
+{{ end }}
+{{ end }}

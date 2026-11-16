@@ -1,0 +1,15 @@
+{{ $name := "未分类" }}{{ with .Params.categories }}{{ $name = index . 0 }}{{ end }}
+{{ $color := "#5d737b" }}{{ $code := "—" }}
+{{ range hugo.Data.categories.items }}{{ if eq .name $name }}{{ $color = .color }}{{ $code = .code }}{{ end }}{{ end }}
+<a class="row" href="{{ .RelPermalink }}" data-cat="{{ $name }}">
+  <div class="row-in">
+    <div class="row-date">{{ .Date.Format "2006.01.02" }}</div>
+    <div class="row-meta">
+      <span class="cat"><i class="swatch" style="background:{{ $color }}"></i>{{ $name }}</span>
+      <span class="date">{{ .Date.Format "2006.01.02" }}</span>
+    </div>
+    <div class="row-title">{{ .Title }}</div>
+    <div class="row-sum">{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary }}{{ end }}</div>
+    <div class="row-time">{{ with .Params.minutes }}{{ . }}{{ else }}{{ .ReadingTime }}{{ end }} 分钟</div>
+  </div>
+</a>

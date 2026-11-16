@@ -1,0 +1,10 @@
+{{ define "main" }}
+<section class="page-head">
+  <div class="eyebrow">ARCHIVE</div>
+  <h2>{{ .Title }}</h2>
+  <p>{{ len .Pages }} 篇</p>
+</section>
+<div class="list" id="post-list">
+  {{ range .Pages.ByDate.Reverse }}{{ partial "row.html" . }}{{ end }}
+</div>
+{{ end }}
